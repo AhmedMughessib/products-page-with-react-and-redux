@@ -1,0 +1,28 @@
+.productPage{
+display: flex;
+flex-direction:row-reverse;
+justify-content: flex-start;
+align-items: flex-start;
+margin-top: 3rem;
+gap: 50px;
+
+}
+
+.controlers{
+  width: 80%;
+}
+.filter{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: 1rem;
+}
+
+.filters{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+}
