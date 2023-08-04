@@ -15,10 +15,18 @@ const totalPrice = useSelector(selectPriceSummaryChanged);
 console.log(totalPrice, 'eerrt');
 const dispatch = useDispatch();
 
+const cache = {};
+
 const getTotalNumberOfProducts = async () => {
   try {
-   const response = await axios.get('http://localhost:5000/productsnumbur');
+    const url = 'http://localhost:5000/productsnumbur'
+    if (cache['url']) {
+      console.log('from cache');
+    }
+   const response = await axios.get(url);
+   cache['url'] = 'response.data[0].row_count';
    setproductNumber(response.data[0].row_count);
+   console.log('from api');
   } catch (error) {
     
   }
@@ -36,9 +44,10 @@ const getTotalPrice = () => {
 useEffect(()=> {
   getTotalPrice()
 },[prouctsData])
+
 useEffect(()=> {
   getTotalNumberOfProducts()
-},[])
+},[totalPrice])
 
 
 
