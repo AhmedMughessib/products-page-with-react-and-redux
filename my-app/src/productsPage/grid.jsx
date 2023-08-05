@@ -8,14 +8,14 @@ import './productPage.css';
 
 import ImgMediaCard from './card';
 
-import {selectProducts, fetchProducts} from '../features/productsData/productsSlice';
+import { useGetProductsQuery } from '../features/apiSlice/apiSlice.js';
+import {selectProducts} from '../features/productsData/productsSlice';
 import {selectFilteredProducts, productsFiltered} from '../features/fiteredProducts/filteredProductsSlice';
 import { sortSelector } from '../features/sort/sort';
 import { selectSortedProducts, productsSorted } from '../features/sortedProducts/sortedProducts';
- 
-
 
 const SpacingGrid = () => {
+  
 const pageNumber = useSelector(state => state.pagination.value);
 const productsData = useSelector(selectProducts);
 const filters = useSelector(state => state.filter.value);
@@ -24,21 +24,17 @@ const sortType = useSelector(sortSelector);
 const sortedData = useSelector(selectSortedProducts);
 
 
-const dispatch = useDispatch();
+const { data, erorr, isLoading } = useGetProductsQuery(pageNumber);
+console.log(data, 'easd');
 
-const getProducts = async () => {
-try {
-  dispatch(fetchProducts(pageNumber))
-} catch (error) {
-  console.log(error.message);
-}
-}
+
+const dispatch = useDispatch();
 
 const filterProducts = () => {
   try {
     console.log(productsData, 'ff',filters);
     dispatch(productsFiltered({
-      data: productsData,
+      data: data,
       filters: filters
     }))
   } catch (error) {
@@ -57,14 +53,9 @@ const sortProducts = () => {
   }
 }
 
-
-useEffect(() => {
-  getProducts()
-},[pageNumber])
-
 useEffect(() => {
   filterProducts()
-},[filters, productsData])
+},[filters, data])
 
 useEffect(() => {
   sortProducts()
@@ -74,7 +65,7 @@ useEffect(() => {
     <Grid sx={{ flexGrow: 1 }} container spacing={2} className='productsList'>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={5}>
-          {sortedData.map((product) => (
+          {sortedData?.map((product) => (
             <Grid key={product.id} item>
             <ImgMediaCard product={product}/>
 

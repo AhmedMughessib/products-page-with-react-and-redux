@@ -4,58 +4,51 @@ import { selectProducts } from "../features/productsData/productsSlice";
 import { priceSummaryChanged, selectPriceSummaryChanged } from "../features/priceSummary/priceSummarySlice";
 import './productPage.css';
 import axios from 'axios';
+import { useGetProductsQuery } from '../features/apiSlice/apiSlice.js';
+
+
 
 
 
 const StatsComponent = () => {
 const [productNumber, setproductNumber] = useState(0);
 
-const prouctsData = useSelector(selectProducts);
-const totalPrice = useSelector(selectPriceSummaryChanged);
-console.log(totalPrice, 'eerrt');
-const dispatch = useDispatch();
 
-const cache = {};
+
+const pageNumber = useSelector(state => state.pagination.value);
+const totalPrice = useSelector(selectPriceSummaryChanged);
+const { data } = useGetProductsQuery(pageNumber);
+
 
 const getTotalNumberOfProducts = async () => {
   try {
-    const url = 'http://localhost:5000/productsnumbur'
-    if (cache['url']) {
-      console.log('from cache');
-    }
+    const url = 'https://fake-products.onrender.com/productsnumbur'
    const response = await axios.get(url);
-   cache['url'] = 'response.data[0].row_count';
    setproductNumber(response.data[0].row_count);
-   console.log('from api');
   } catch (error) {
     
   }
 }
-
-
-
-const getTotalPrice = () => {
-  try {
-    dispatch(priceSummaryChanged(prouctsData))
-  } catch (error) {
-    console.log(error.message)
-  }
-}
-useEffect(()=> {
-  getTotalPrice()
-},[prouctsData])
-
 useEffect(()=> {
   getTotalNumberOfProducts()
 },[totalPrice])
 
-
-
 return (
   <div className="summary">
-<span><p>Total Number of Products:</p>{Number(productNumber)}</span>
-<span><p>Total Price of products in this page:</p>${totalPrice}</span>
-  </div>
+  <span>
+    <p>Total Number of Products:</p>
+    <strong>{Number(productNumber)}</strong>
+  </span>
+  <span>
+    <p>Total Price of products in this page:</p>
+    <strong>
+      $
+      {data?.reduce((acc, curr) => {
+        return acc + Number(curr.price);
+      }, 0)}
+    </strong>
+  </span>
+</div>
 )
 
 }

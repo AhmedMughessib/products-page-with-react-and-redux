@@ -6,6 +6,7 @@ import filterProductsSlice from '../features/fiteredProducts/filteredProductsSli
 import priceSummarySlice from '../features/priceSummary/priceSummarySlice';
 import sortReducer from '../features/sort/sort';
 import sortedProductsReducer from '../features/sortedProducts/sortedProducts';
+import api from '../features/apiSlice/apiSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,10 @@ export const store = configureStore({
     filteredProducts: filterProductsSlice,
     priceSummary: priceSummarySlice,
     sort: sortReducer,
-    sortedProducts: sortedProductsReducer
+    sortedProducts: sortedProductsReducer,
+    [api.reducerPath]: api.reducer,
+
   },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware().concat(api.middleware),
 });

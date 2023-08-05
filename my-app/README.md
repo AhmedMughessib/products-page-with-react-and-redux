@@ -1,46 +1,50 @@
-# Getting Started with Create React App and Redux
+Product Page with Filters and Sorting Welcome to the Product Page with Filters and Sorting project! This project provides a user-friendly interface for browsing products, applying filters by category, and sorting products by name and prices. Users can also view the total sum of prices for the currently displayed products and the total number of products.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Getting Started To run the application locally, follow these steps:
 
-## Available Scripts
+1. Clone the repository to your local machine:
 
-In the project directory, you can run:
+2. Navigate to the my-app file
 
-### `npm start`
+3. in the terminal use: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm install 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. use the command: 
 
-### `npm test`
+`npm start `
+5. open the browser and the app will be running on 
+http://localhost:3000
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Features
+ 1. Browse and explore a variety of products. 
+ 2. Filter products by category for easier navigation.
+ 3.  Sort products by name and prices to find what you're looking for. 
+ 4. See the total sum of prices for the products currently displayed.
+ 5. View the total number of products available.
+ 6. the product list is paginated
+  
+  # Technologies Used
+  1. React: JavaScript library for building user 
+   interfaces.
+   2. Redux: State management for efficient data flow across components.
+   3. RTK Query: Simplified data fetching and caching library for managing API requests.
+   4. CSS: Styling and layout of the application. 
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Performance Optimization
+1. Redux State Management: Utilized Redux to manage the application state, ensuring a centralized source of truth and consistent data flow throughout the app.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. RTK Query for Data Management: Leveraged RTK Query to handle data fetching, caching, and synchronization with the backend API.
 
-## Learn More
+3. Efficient Sorting Algorithms: Implemented low time complexity sorting algorithms such as quick sort
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Data Caching: Cached frequently used data to reduce the need for repeated API requests.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. React Components: Designed and structured the application using modular React components. This approach minimizes unnecessary re-renders.
