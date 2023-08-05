@@ -3,19 +3,24 @@ import SpacingGrid from './grid';
 import CustomIcons from './pagination';
 import './productPage.css';
 import FilterComponent from './filter';
-
+import StatsComponent from './statsComponent';
+import SortComponent from './sortComponent'
 
 
 
 const ProductsPage = () => {
-  const [pageNum, setPageNum] = React.useState(1);
 return (
   <div className='productPage'>
-    <div className='controlers'>
+    <div className='productsSection'>
     <SpacingGrid />
     <CustomIcons />
     </div>
+    <div className='controllers'>
     <FilterComponent />
+    <StatsComponent />
+    <SortComponent />
+    </div>
+      
   </div>
 
 )
