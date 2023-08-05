@@ -22,7 +22,7 @@ const handleFilterChange = (e) => {
 
   const [categories, setCategories] = useState([]);
 const getCategories = async () => {
-  const resposnse = await axios.get('https://fake-products.onrender.com/categories');
+  const resposnse = await axios.get('http://fake-products.onrender.com/categories/categories');
   setCategories(resposnse.data)
 }
 

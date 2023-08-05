@@ -25,7 +25,6 @@ const sortedData = useSelector(selectSortedProducts);
 
 
 const { data, erorr, isLoading } = useGetProductsQuery(pageNumber);
-console.log(data, 'easd');
 
 
 const dispatch = useDispatch();
